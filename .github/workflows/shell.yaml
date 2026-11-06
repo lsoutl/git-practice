@@ -1,0 +1,29 @@
+name: Shell Command #workflows ID
+on: workflow_dispatch #Event trigger
+jobs: #tesk 단위
+  run: #jab ID, 사용자 임의로 작성 가능
+    runs-on: ubuntu-latest #실행 환경
+    steps: #실행 최소 단위
+      - name: Check environment #step1의 ID
+        run: | #shell
+          echo "Current directory:"
+          pwd
+          echo "File list:"
+          ls -la
+      - name: Check file #step2의 ID
+        run: |
+          if [ -f "README.md" ]; then
+            echo "File exists"
+          else
+            echo "File not found"
+          fi
+      - name: Repeat commands #step3의 ID
+        run: |
+          for i in 1 2 3
+          do
+            echo "Test $i" #참조 표시
+          done
+      - name: Use environment variable # step4의 ID
+        env: #환경 설정 가능
+          MESSAGE: Hello
+        run: echo "$MESSAGE"
